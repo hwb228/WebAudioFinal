@@ -1,0 +1,1650 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Web Browser Audio Mixer</title>
+<style>
+div#text{
+	display: inline-block;
+}
+div#mixpadL{
+	background: #C4F2FF;
+	width: 300px;
+	height: 300px;
+	display: inline-block;
+}
+div#mixpadR{
+	background: #C4F2FF;
+	width: 300px;
+	height: 300px;
+	display: inline-block;
+}
+div#mixpad{
+	border: solid;
+	border-color: #C4F2FF; 
+	display: inline-block;
+}
+div#pan{
+	display: inline-block;
+}
+button#play{
+	background:url(Pics/Play.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+button#MuteDrums{
+	background:url(Pics/Unmute.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+button#MuteBass{
+	background:url(Pics/Unmute.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+button#MuteGtr{
+	background:url(Pics/Unmute.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+button#MuteLGtr{
+	background:url(Pics/Unmute.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+button#MuteDrumVerb{
+	background:url(Pics/Unmute.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+button#MuteBassVerb{
+	background:url(Pics/Unmute.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+button#MuteGtrVerb{
+	background:url(Pics/Unmute.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+button#MuteLGtrVerb{
+	background:url(Pics/Unmute.png) no-repeat;
+	width: 23px;
+	height: 20px;
+}
+input#MasterVolume{
+	width: 100px;
+	
+}
+input#TrackScroller{
+	width: 300px;
+	
+}
+button#SoloDrums{
+	background:url(Pics/UnSolo.png);
+	width: 23px;
+	height: 20px;
+}
+button#SoloDrumVerb{
+	background:url(Pics/UnSolo.png);
+	width: 23px;
+	height: 20px;
+}
+button#SoloBass{
+	background:url(Pics/UnSolo.png);
+	width: 23px;
+	height: 20px;
+}
+button#SoloBassVerb{
+	background:url(Pics/UnSolo.png);
+	width: 23px;
+	height: 20px;
+}
+button#SoloGtr{
+	background:url(Pics/UnSolo.png);
+	width: 23px;
+	height: 20px;
+}
+button#SoloGtrVerb{
+	background:url(Pics/UnSolo.png);
+	width: 23px;
+	height: 20px;
+}
+button#SoloLGtr{
+	background:url(Pics/UnSolo.png);
+	width: 23px;
+	height: 20px;
+}
+button#SoloLGtrVerb{
+	background:url(Pics/UnSolo.png);
+	width: 23px;
+	height: 20px;
+}
+button#loop{
+	background:url(Pics/NoLoop.png);
+	width: 25px;
+	height: 22px;
+	
+}
+div#TimeScroller{
+	display: inline-block;
+}
+div#MasterFader{
+	display: inline-block;
+}
+div#VerbFader{
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+
+  <div id="title">
+    <center><h1>Web Browser Audio Mixer</h1></center>
+  </div>
+<div id="explanation">
+    <center><h3> This page allows users to control the volume and pan parameters of individual audio stems of a song to create their own unique mix!</h3>
+</div></center><br>
+ 
+ <left><div id="main"><div id="text"> To control the level and panning of an audio stem,<br> select the radio button next to its name.<br><br> Increase the level by moving the mouse upwards <br>on the mixpad. Decrease level by moving downwards.<br><br>Move the mouse to the left to bring the stereo pan of<br> the stem to the left. Move to the right to bring the pan<br> to the right. <br><br>To lock panning and level values for a stem, simply <br> click the mouse in the mixpad (black border will <br>appear). To unlock, simply click again (border will <br>disappear).<br><br> Reverb levels are defaulted to 0 and dry levels are<br> defaulted to 0.7. Solo, mute, and loop the audio to<br> mix with more clarity.  </div><div id="mixpad"><div id="mixpadL"></div><div id="mixpadR"></div></div></div></left>
+
+      
+<center> <input type="radio" id="Drums" name="track" value="0" class="effect" checked>Drums</input><button id="SoloDrums"></button><button id="MuteDrums"></button> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="DrumVerb" name="track" value="0" class="effect">Drum Reverb</input><button id="SoloDrumVerb"></button><button id="MuteDrumVerb"></button></center>
+<center> <input type="radio" id="Bass" name="track" value="1" class="effect">Bass</input><button id="SoloBass"></button><button id="MuteBass"></button> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+ <input type="radio" id="BassVerb" name="track" value="1" class="effect">Bass Reverb</input><button id="SoloBassVerb"></button><button id="MuteBassVerb"></button></center>
+<center> <input type="radio" id="Guitar" name="track" value="1" class="effect">Guitar</input><button id="SoloGtr"></button><button id="MuteGtr"></button> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="GuitarVerb" name="track" value="1" class="effect">Guitar Reverb</input><button id="SoloGtrVerb"></button><button id="MuteGtrVerb"></button>
+<center> <input type="radio" id="LGuitar" name="track" value="1" class="effect">Lead Guitar</input><button id="SoloLGtr"></button><button id="MuteLGtr"></button> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+<input type="radio" id="LGuitarVerb" name="track" value="1" class="effect">Lead Guitar Reverb</input><button id="SoloLGtrVerb"></button><button id="MuteLGtrVerb"></button></center>
+<center><button id="play"></button><button id="loop"></button></center>
+<br>
+
+<center><div id="TimeScroller"><center><input id="TrackScroller"  type="range" min="0" max="300" value="0" step="1"></center>
+<center> <div id="audioTime"><span id="curTime">0:00</span> / <span id="durTime">0:00</span></div></center></div>
+<div id="MasterFader"><center><input id="MasterVolume"  type="range" min="0" max="100" value="100" step="1"></center><center>Master Gain</center></div>
+<div id="VerbFader"><center><input id="VerbVolume"  type="range" min="0" max="100" value="100" step="1"></center><center>Verb Gain</center></div></center>
+
+<script>
+
+	var context = new (window.AudioContext || window.webkitAudioContext)();
+	context.suspend();
+	drumBuffer = 0;
+	setInterval(SeekTimeUpdate, 50);
+	play = document.getElementById("play");
+	play.addEventListener("click", playSound);
+	var trackSeeking = false	;
+	var seekto;
+	var curTime;
+	var durTime;
+	var nt;
+	var loopnum = 0;
+	curTime = document.getElementById("curTime");
+	durTime = document.getElementById("durTime");
+	MasterVolume=document.getElementById("MasterVolume");
+	MasterVolume.addEventListener("mousemove", SetMasterVolume);
+	VerbVolume=document.getElementById("VerbVolume");
+	VerbVolume.addEventListener("mousemove", SetVerbVolume);
+	TrackScroller=document.getElementById("TrackScroller");
+	TrackScroller.addEventListener("mousedown", function(event) { trackSeeking=true; Seek(event); });
+	TrackScroller.addEventListener("mousemove", function(event) { Seek(event); });
+	TrackScroller.addEventListener("mouseup", function() { trackSeeking=false; });
+	var going = false;
+	var looping = false;
+	loop = document.getElementById("loop");
+	loop.addEventListener("click", LoopAudio);
+	var startOffset = 0; 
+	var startTime = 0;
+	var drumsSeeking = true;
+	var drumVerbSeeking = true;
+	var drumsSoloed = false;
+	var drumsMuted = false;
+	var drumVerbMuted = false;
+	var drumVerbSoloed = false;
+	var bassSeeking = true;
+	var bassVerbSeeking = true;
+	var bassSoloed = false;
+	var bassMuted = false;
+	var bassVerbMuted = false;
+	var bassVerbSoloed = false;
+	var gtrSeeking = true;
+	var gtrVerbSeeking = true;
+	var gtrSoloed = false;
+	var gtrMuted = false;
+	var gtrVerbMuted = false;
+	var gtrVerbSoloed = false;
+	var LgtrSeeking = true;
+	var LgtrVerbSeeking = true;
+	var LgtrSoloed = false;
+	var LgtrMuted = false;
+	var LgtrVerbMuted = false;
+	var LgtrVerbSoloed = false;
+	mixpadL = document.getElementById("mixpadL");
+	mixpadR = document.getElementById("mixpadR");
+	mixed = document.getElementById("mixpad");
+	Drums = document.getElementById("Drums");
+	Bass = document.getElementById("Bass");
+	Guitar = document.getElementById("Guitar");
+	LGuitar = document.getElementById("LGuitar");
+	DrumVerb = document.getElementById("DrumVerb");
+	BassVerb = document.getElementById("BassVerb");
+	GuitarVerb = document.getElementById("GuitarVerb");
+	LGuitarVerb = document.getElementById("LGuitarVerb");
+	muteDrums = document.getElementById("MuteDrums");
+	muteDrumVerb = document.getElementById("MuteDrumVerb");
+	muteBass = document.getElementById("MuteBass");
+	muteBassVerb = document.getElementById("MuteBassVerb");
+	muteGtr = document.getElementById("MuteGtr");
+	muteGtrVerb = document.getElementById("MuteGtrVerb");
+	muteLGtr = document.getElementById("MuteLGtr");
+	muteLGtrVerb = document.getElementById("MuteLGtrVerb");
+	soloDrums = document.getElementById("SoloDrums");
+	soloDrumVerb = document.getElementById("SoloDrumVerb");
+	soloBass = document.getElementById("SoloBass");
+	soloBassVerb = document.getElementById("SoloBassVerb");
+	soloGtr = document.getElementById("SoloGtr");
+	soloGtrVerb = document.getElementById("SoloGtrVerb");
+	soloLGtr = document.getElementById("SoloLGtr");
+	soloLGtrVerb = document.getElementById("SoloLGtrVerb");
+	mixpadL.addEventListener("mousedown", function(event) { setPanL(event);});
+	mixpadR.addEventListener("mousedown", function(event) { setPanR(event);});
+	mixpadL.addEventListener("mousemove", function(event) { changePanL(event);});
+	mixpadR.addEventListener("mousemove", function(event) { changePanR(event);});
+
+	muteDrums.addEventListener("click", MuteDrums);
+	muteBass.addEventListener("click", MuteBass);
+	muteGtr.addEventListener("click", MuteGtr);
+	muteLGtr.addEventListener("click", MuteLGtr);
+	muteDrumVerb.addEventListener("click", MuteDrumVerb);
+	muteBassVerb.addEventListener("click", MuteBassVerb);
+	muteGtrVerb.addEventListener("click", MuteGtrVerb);
+	muteLGtrVerb.addEventListener("click", MuteLGtrVerb);
+	soloDrums.addEventListener("click", DrumSolo);
+	soloBass.addEventListener("click", BassSolo);	
+	soloGtr.addEventListener("click", GtrSolo);
+	soloLGtr.addEventListener("click", LGtrSolo);
+	soloDrumVerb.addEventListener("click", DrumVerbSolo);
+	soloBassVerb.addEventListener("click", BassVerbSolo);	
+	soloGtrVerb.addEventListener("click", GtrVerbSolo);
+	soloLGtrVerb.addEventListener("click", LGtrVerbSolo);
+	var drumPanner;
+	var drumVerbPanner;
+	var drumGain;
+	var drumGainSetting = .7;
+	var newDrumPan = 0;
+	var newDrumVerbPan = 0;
+	var bassPanner;
+	var bassVerbPanner;
+	var bassGain;
+	var bassGainSetting = .7;
+	var newBassPan = 0;
+	var newBassVerbPan = 0;
+	var gtrPanner;
+	var gtrVerbPanner;
+	var gtrGain;
+	var gtrGainSetting = .7;
+	var newGtrPan = 0;
+	var newGtrVerbPan = 0;
+	var LgtrPanner;
+	var LgtrVerbPanner;
+	var LgtrGain;
+	var LgtrGainSetting = .7;
+	var newLGtrPan = 0;
+	var newLGtrVerbPan = 0;
+	var drumVerbGainSetting = 0;
+	var bassVerbGainSetting = 0;
+	var gtrVerbGainSetting = 0;
+	var LgtrVerbGainSetting = 0;
+
+	var drumRequest = new XMLHttpRequest();
+	drumRequest.open('GET', 'Audio/Drums.mp3', true);
+	drumRequest.responseType = 'arraybuffer';
+	drumRequest.onload = function() {
+		context.decodeAudioData(drumRequest.response, function(theDrumBuffer) {
+			drumBuffer = theDrumBuffer;
+		});
+	}
+	drumRequest.send();
+
+	var bassRequest = new XMLHttpRequest();
+	bassRequest.open('GET', 'Audio/Bass.mp3', true);
+	bassRequest.responseType = 'arraybuffer';
+	bassRequest.onload = function() {
+		context.decodeAudioData(bassRequest.response, function(theBassBuffer) {
+			bassBuffer = theBassBuffer;
+		});
+	}
+	bassRequest.send();
+
+	var gtrRequest = new XMLHttpRequest();
+	gtrRequest.open('GET', 'Audio/Guitar1.mp3', true);
+	gtrRequest.responseType = 'arraybuffer';
+	gtrRequest.onload = function() {
+		context.decodeAudioData(gtrRequest.response, function(theGtrBuffer) {
+			gtrBuffer = theGtrBuffer;
+		});
+	}
+	gtrRequest.send();
+
+	var LgtrRequest = new XMLHttpRequest();
+	LgtrRequest.open('GET', 'Audio/Guitar2.mp3', true);
+	LgtrRequest.responseType = 'arraybuffer';
+	LgtrRequest.onload = function() {
+		context.decodeAudioData(LgtrRequest.response, function(theLGtrBuffer) {
+			LgtrBuffer = theLGtrBuffer;
+		});
+	}
+	LgtrRequest.send();
+
+	var verbRequest = new XMLHttpRequest();
+	verbRequest.open('GET', 'Audio/IR.mp3', true);
+	verbRequest.responseType = 'arraybuffer';
+	verbRequest.onload = function() {
+		context.decodeAudioData(verbRequest.response, function(theVerbBuffer) {
+			verbBuffer = theVerbBuffer;
+		});
+	}
+	verbRequest.send();
+
+function playSound() {
+	if (going == false) {
+		context.resume();
+		going = true;
+		play.style.background = "url(Pics/Pause.png) no-repeat";
+		startTime = context.currentTime;
+		masterGain = context.createGain();
+		masterGain.connect(context.destination);
+		verb = context.createConvolver();
+		verb.buffer = verbBuffer;
+		verbGain = context.createGain();
+		verb.connect(verbGain);
+		verbGain.connect(masterGain);
+		drumSource = context.createBufferSource();
+		drumPanner = context.createStereoPanner();
+		drumPanner.pan.value = newDrumPan;
+		drumGain = context.createGain();
+		if (drumsMuted == true) {
+			drumGain.gain.value = 0;
+		} else if (drumsMuted == false) {
+			drumGain.gain.value = drumGainSetting;
+		}
+		if (drumsSoloed == false && (bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+			drumGain.gain.value = 0;
+		}
+		drumVerbGain = context.createGain();
+		if (drumVerbMuted == true) {
+			drumVerbGain.gain.value = 0;
+		} else if (drumVerbMuted == false) {
+			drumVerbGain.gain.value = drumVerbGainSetting;
+		}
+		if (drumVerbSoloed == false && (bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumsSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+			drumVerbGain.gain.value = 0;
+		}
+		drumVerbPanner = context.createStereoPanner();
+		drumVerbPanner.pan.value = newDrumVerbPan;
+		drumVerbPanner.connect(verb);
+		drumSource.buffer = drumBuffer;
+		drumSource.connect(drumGain);
+		drumSource.connect(drumVerbGain);
+		drumGain.connect(drumPanner);
+		drumVerbGain.connect(drumVerbPanner);
+		drumPanner.connect(masterGain);
+		drumSource.start(0, (startOffset-(loopnum*drumBuffer.duration)));
+		bassSource = context.createBufferSource();
+		bassPanner = context.createStereoPanner();
+		bassPanner.pan.value = newBassPan;
+		bassGain = context.createGain();
+		if (bassMuted == true) {
+			bassGain.gain.value = 0;
+		} else if (bassMuted == false) {
+			bassGain.gain.value = bassGainSetting;
+		}
+		if (bassSoloed == false && (drumsSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+			bassGain.gain.value = 0;
+		}
+		bassVerbGain = context.createGain();
+		if (bassVerbMuted == true) {
+			bassVerbGain.gain.value = 0;
+		} else if (bassVerbMuted == false) {
+			bassVerbGain.gain.value = bassVerbGainSetting;
+		}
+		if (bassVerbSoloed == false && (bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || drumsSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+			bassVerbGain.gain.value = 0;
+		}
+		bassVerbPanner = context.createStereoPanner();
+		bassVerbPanner.pan.value = newBassVerbPan;
+		bassVerbGain.connect(bassVerbPanner);
+		bassVerbPanner.connect(verb);
+		bassSource.buffer = bassBuffer;
+		bassSource.connect(bassGain);
+		bassSource.connect(bassVerbGain);
+		bassGain.connect(bassPanner);
+		bassVerbGain.connect(bassVerbPanner);
+		bassPanner.connect(masterGain);
+		bassSource.start(0, (startOffset-(loopnum*drumBuffer.duration)));
+		gtrSource = context.createBufferSource();
+		gtrPanner = context.createStereoPanner();
+		gtrPanner.pan.value = newGtrPan;
+		gtrGain = context.createGain();
+		if (gtrMuted == true) {
+			gtrGain.gain.value = 0;
+		} else if (gtrMuted == false) {
+			gtrGain.gain.value = gtrGainSetting;
+		}
+		if (gtrSoloed == false && (bassSoloed == true || drumsSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+			gtrGain.gain.value = 0;
+		}
+		gtrVerbGain = context.createGain();
+		if (gtrVerbMuted == true) {
+			gtrVerbGain.gain.value = 0;
+		} else if (gtrVerbMuted == false) {
+			gtrVerbGain.gain.value = gtrVerbGainSetting;
+		}
+		if (gtrVerbSoloed == false && (bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || LgtrVerbSoloed == true || bassVerbSoloed == true || drumsSoloed == true)) {
+			gtrVerbGain.gain.value = 0;
+		}
+		gtrVerbPanner = context.createStereoPanner();
+		gtrVerbGain.connect(gtrVerbPanner);
+		gtrVerbPanner.connect(verb);
+		gtrVerbPanner.pan.value = newGtrVerbPan;
+		gtrSource.buffer = gtrBuffer;
+		gtrSource.connect(gtrGain);
+		gtrSource.connect(gtrVerbGain);
+		gtrGain.connect(gtrPanner);
+		gtrVerbGain.connect(gtrVerbPanner);
+		gtrPanner.connect(masterGain);
+		gtrSource.start(0, (startOffset-(loopnum*drumBuffer.duration)));
+
+
+		LgtrSource = context.createBufferSource();
+		LgtrPanner = context.createStereoPanner();
+		LgtrPanner.pan.value = newLGtrPan;
+		LgtrGain = context.createGain();
+		if (LgtrMuted == true) {
+			LgtrGain.gain.value = 0;
+		} else if (LgtrMuted == false) {
+			LgtrGain.gain.value = LgtrGainSetting;
+		}
+		if (LgtrSoloed == false && (bassSoloed == true || drumsSoloed == true || gtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+			LgtrGain.gain.value = 0;
+		}
+		LgtrVerbGain = context.createGain();
+		if (LgtrVerbMuted == true) {
+			LgtrVerbGain.gain.value = 0;
+		} else if (LgtrVerbMuted == false) {
+			LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+		}
+		if (LgtrVerbSoloed == false && (bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || drumsSoloed == true)) {
+			LgtrVerbGain.gain.value = 0;
+		}
+		LgtrVerbPanner = context.createStereoPanner();
+		LgtrVerbGain.connect(LgtrVerbPanner);
+		LgtrVerbPanner.connect(verb);
+		LgtrVerbPanner.pan.value = newLGtrVerbPan;
+		LgtrSource.buffer = LgtrBuffer;
+		LgtrSource.connect(LgtrGain);
+		LgtrSource.connect(LgtrVerbGain);
+		LgtrGain.connect(LgtrPanner);
+		LgtrVerbGain.connect(LgtrVerbPanner);
+		LgtrPanner.connect(masterGain);
+		LgtrSource.start(0, (startOffset-(loopnum*drumBuffer.duration)));
+
+
+		if (looping == true) {
+			drumSource.buffer.loop = true;
+			bassSource.buffer.loop = true;
+			gtrSource.buffer.loop = true;
+			LgtrSource.buffer.loop = true;
+		} else if (looping == false) {
+			drumSource.buffer.loop = false;
+			bassSource.buffer.loop = false;
+			gtrSource.buffer.loop = false;
+			LgtrSource.buffer.loop = false;
+
+		}
+	} else if (going == true) {
+		play.style.background = "url(Pics/Play.png) no-repeat";	
+		drumSource.stop(0);
+		bassSource.stop(0);
+		gtrSource.stop(0);
+		LgtrSource.stop(0);
+		startOffset += (context.currentTime-startTime);
+		going = false;
+		context.suspend();
+	}
+}
+
+	function changePanL(event) {
+		if (Drums.checked) {
+			if (drumsSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				LDoffset = (event.clientX - mixpadL.offsetLeft)/300; 
+				newDrumPan = LDoffset-1;
+				drumPanner.pan.value = (newDrumPan); 
+				drumGainSetting = 1-(event.clientY-mixpadL.offsetTop)/300;
+				if (drumsSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (drumsMuted == false) {
+						drumGain.gain.value = drumGainSetting;	
+					} else if (drumsMuted == true) {
+						drumGain.gain.value = 0;
+					}
+				} else if (drumsSoloed == false && (bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					drumGain.gain.value = 0;
+				}
+			} else if (drumsSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (Bass.checked) {
+			if (bassSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				LBoffset = (event.clientX - mixpadL.offsetLeft)/300; 
+				newBassPan = LBoffset-1;
+				bassPanner.pan.value = (newBassPan); 
+				bassGainSetting = 1-(event.clientY-mixpadL.offsetTop)/300;
+				if ( bassSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (bassMuted == false) {
+						bassGain.gain.value = bassGainSetting;
+					} else if (bassMuted == true) {
+						bassGain.gain.value = 0;
+					} 
+				} else if ( bassSoloed == false && (drumsSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					bassGain.gain.value = 0;
+				}
+			} else if (bassSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (Guitar.checked) {
+			if (gtrSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				GLoffset = (event.clientX - mixpadL.offsetLeft)/300; 
+				newGtrPan = GLoffset-1;
+				gtrPanner.pan.value = (newGtrPan); 
+				gtrGainSetting = 1-(event.clientY-mixpadL.offsetTop)/300;
+				if ( gtrSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (gtrMuted == false) {
+						gtrGain.gain.value = gtrGainSetting;
+					} else if (gtrMuted == true) {
+						gtrGain.gain.value = 0;
+					}
+				} else if ( gtrSoloed == false && (drumsSoloed == true || bassSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					gtrGain.gain.value = 0;
+				}
+			} else if (gtrSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (LGuitar.checked) {
+			if (LgtrSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				LGLoffset = (event.clientX - mixpadL.offsetLeft)/300; 
+				newLGtrPan = LGLoffset-1;
+				LgtrPanner.pan.value = (newLGtrPan); 
+				LgtrGainSetting = 1-(event.clientY-mixpadL.offsetTop)/300;
+				if ( LgtrSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (LgtrMuted == false) {
+						LgtrGain.gain.value = LgtrGainSetting;
+					} else if (LgtrMuted == true) {
+						LgtrGain.gain.value = 0;
+					}
+				} else if (LgtrSoloed == false && (drumsSoloed == true || bassSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					LgtrGain.gain.value = 0;
+				}
+			} else if (LgtrSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (DrumVerb.checked) {
+			if (drumVerbSeeking == true){
+				mixpad.style.borderColor = "#C4F2FF";
+				DVLoffset = (event.clientX - mixpadL.offsetLeft)/300; 
+				newDrumVerbPan = DVLoffset-1;
+				drumVerbPanner.pan.value = (newDrumVerbPan); 
+				drumVerbGainSetting = 1-(event.clientY-mixpadL.offsetTop)/300;
+				if (drumVerbSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (drumVerbMuted == false) {
+						drumVerbGain.gain.value = drumVerbGainSetting;
+					} else if (drumVerbMuted == true) {
+						drumVerbGain.gain.value = 0;
+					}
+				} else if (drumVerbSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					drumVerbGain.gain.value = 0;
+				}
+			} else if (drumVerbSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (BassVerb.checked) {
+			if (bassVerbSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				BVLoffset = (event.clientX - mixpadL.offsetLeft)/300; 
+				newBassVerbPan = BVLoffset-1;
+				bassVerbPanner.pan.value = (newBassVerbPan); 
+				bassVerbGainSetting = 1-(event.clientY-mixpadL.offsetTop)/300;
+				if (bassVerbSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (bassVerbMuted == false) {
+						bassVerbGain.gain.value = bassVerbGainSetting;
+					} else if (bassVerbMuted == true) {
+						bassVerbGain.gain.value = 0;
+					}
+				} else if (bassVerbSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					bassVerbGain.gain.value = 0;
+				}
+			} else if (bassVerbSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (GuitarVerb.checked) {
+			if (gtrVerbSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				GVLoffset = (event.clientX - mixpadL.offsetLeft)/300; 
+				newGtrVerbPan = GVLoffset-1;
+				gtrVerbPanner.pan.value = (newGtrVerbPan); 
+				gtrVerbGainSetting = 1-(event.clientY-mixpadL.offsetTop)/300;
+				if (gtrVerbSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (gtrVerbMuted == false) {
+						gtrVerbGain.gain.value = gtrVerbGainSetting;
+					} else if (gtrVerbMuted == true) {
+						gtrVerbGain.gain.value = 0;
+					}
+				} else if (gtrVerbSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || LgtrVerbSoloed == true)) {
+					gtrVerbGain.gain.value = 0;
+				}
+			} else if (gtrVerbSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (LGuitarVerb.checked) {
+			if (LgtrVerbSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				LGVLoffset = (event.clientX - mixpadL.offsetLeft)/300; 
+				newLGtrVerbPan = LGVLoffset-1;
+				LgtrVerbPanner.pan.value = (newLGtrVerbPan); 
+				LgtrVerbGainSetting = 1-(event.clientY-mixpadL.offsetTop)/300;
+				if (LgtrVerbSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false  && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (LgtrVerbMuted == false) {
+						LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+					} else if (LgtrVerbMuted == true) {
+						LgtrVerbGain.gain.value = 0;
+					}
+				} else if (LgtrVerbSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true)) {
+					LgtrVerbGain.gain.value = 0;
+				}
+			} else if (LgtrVerbSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		}	
+		
+	}
+	function setPanL(event) {
+		if (Drums.checked) {
+			if (drumsSeeking == true){
+				drumsSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (drumsSeeking == false) {
+				drumsSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (Bass.checked) {
+			if (bassSeeking == true) {
+				bassSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (bassSeeking == false) {
+				bassSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (Guitar.checked) {
+			if (gtrSeeking == true) {
+				gtrSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (gtrSeeking == false) {
+				gtrSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}	
+		} else if (LGuitar.checked) {
+			if (LgtrSeeking == true) {
+				LgtrSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (LgtrSeeking == false) {
+				LgtrSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}	
+		} else if (DrumVerb.checked) {
+			if (drumVerbSeeking == true){
+				drumVerbSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (drumVerbSeeking == false) {
+				drumVerbSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (BassVerb.checked) {
+			if (bassVerbSeeking == true) {
+				bassVerbSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (bassVerbSeeking == false) {
+				bassVerbSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (GuitarVerb.checked) {
+			if (gtrVerbSeeking == true) {
+				gtrVerbSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (gtrVerbSeeking == false) {
+				gtrVerbSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}	
+		} else if (LGuitarVerb.checked) {
+			if (LgtrVerbSeeking == true) {
+				LgtrVerbSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (LgtrVerbSeeking == false) {
+				LgtrVerbSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}	
+		}		
+	}
+	function changePanR(event) {
+		if (Drums.checked) {
+			if (drumsSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				newDrumPan = (event.clientX - mixpadR.offsetLeft)/300; 
+				drumPanner.pan.value = newDrumPan;
+				drumGainSetting = 1-(event.clientY-mixpadR.offsetTop)/300;
+				if (drumsSoloed == true || (drumsSoloed == false && bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (drumsMuted == false) {
+						drumGain.gain.value = drumGainSetting;	
+					} else if (drumsMuted == true) {
+						drumGain.gain.value = 0;
+					}
+				} else if (drumsSoloed == false && (bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					drumGain.gain.value = 0;
+				}
+			} else if (drumsSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (Bass.checked) {
+			if (bassSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				newBassPan = (event.clientX - mixpadR.offsetLeft)/300; 
+				bassPanner.pan.value = newBassPan; 
+				bassGainSetting = 1-(event.clientY-mixpadR.offsetTop)/300;
+				if (bassSoloed == true || (drumsSoloed == false & bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (bassMuted == false) {
+						bassGain.gain.value = bassGainSetting;
+					} else if (bassMuted == true) {
+						bassGain.gain.value = 0;
+					}
+				} else if (bassSoloed == false && (drumsSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					bassGain.gain.value = 0;
+				}
+			} else if (bassSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (Guitar.checked) {
+			if (gtrSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				newGtrPan = (event.clientX - mixpadR.offsetLeft)/300; 
+				gtrPanner.pan.value = newGtrPan; 
+				gtrGainSetting = 1-(event.clientY-mixpadR.offsetTop)/300;
+				if (gtrSoloed == true || (drumsSoloed == false & bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (gtrMuted == false) {
+						gtrGain.gain.value = gtrGainSetting;
+					} else if (gtrMuted == true) {
+						gtrGain.gain.value = 0;
+					}
+				} else if (gtrSoloed == false && (drumsSoloed == true || bassSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					gtrGain.gain.value = 0;
+				}
+			} else if (gtrSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (LGuitar.checked) {
+			if (LgtrSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				newLGtrPan = (event.clientX - mixpadR.offsetLeft)/300; 
+				LgtrPanner.pan.value = newLGtrPan; 
+				LgtrGainSetting = 1-(event.clientY-mixpadR.offsetTop)/300;
+				if (LgtrSoloed == true || (drumsSoloed == false & bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (LgtrMuted == false) {
+						LgtrGain.gain.value = LgtrGainSetting;
+					} else if (LgtrMuted == true) {
+						LgtrGain.gain.value = 0;
+					}
+				} else if (LgtrSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					LgtrGain.gain.value = 0;
+				}
+			} else if (LgtrSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (DrumVerb.checked) {
+			if (drumVerbSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				newDrumVerbPan = (event.clientX - mixpadR.offsetLeft)/300; 
+				drumVerbPanner.pan.value = newDrumVerbPan; 
+				drumVerbGainSetting = 1-(event.clientY-mixpadR.offsetTop)/300;
+				if (drumVerbSoloed == true || (drumsSoloed == false & bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (drumVerbMuted == false) {
+						drumVerbGain.gain.value = drumVerbGainSetting;
+					} else if (drumVerbMuted == true) {
+						drumVerbGain.gain.value = 0;
+					}
+				} else if (drumVerbSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					drumVerbGain.gain.value = 0;
+				}
+			} else if (drumVerbSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (BassVerb.checked) {
+			if (bassVerbSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				newBassVerbPan = (event.clientX - mixpadR.offsetLeft)/300; 
+				bassVerbPanner.pan.value = newBassVerbPan; 
+				bassVerbGainSetting = 1-(event.clientY-mixpadR.offsetTop)/300;
+				if (bassVerbSoloed == true || (drumsSoloed == false & bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (bassVerbMuted == false) {
+						bassVerbGain.gain.value = bassVerbGainSetting;
+					} else if (bassVerbMuted == true) {
+						bassVerbGain.gain.value = 0;
+					}
+				} else if (bassVerbSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)) {
+					bassVerbGain.gain.value = 0;
+				}
+			} else if (bassVerbSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (GuitarVerb.checked) {
+			if (gtrVerbSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				newGtrVerbPan = (event.clientX - mixpadR.offsetLeft)/300; 
+				gtrVerbPanner.pan.value = newGtrVerbPan; 
+				gtrVerbGainSetting = 1-(event.clientY-mixpadR.offsetTop)/300;
+				if (gtrVerbSoloed == true || (drumsSoloed == false & bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (gtrVerbMuted == false) {
+						gtrVerbGain.gain.value = gtrVerbGainSetting;
+					} else if (gtrVerbMuted == true) {
+						gtrVerbGain.gain.value = 0;
+					}
+				} else if (gtrVerbSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || LgtrVerbSoloed == true)) {
+					gtrVerbGain.gain.value = 0;
+				}
+			} else if (gtrVerbSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		} else if (LGuitarVerb.checked) {
+			if (LgtrVerbSeeking == true) {
+				mixpad.style.borderColor = "#C4F2FF";
+				newLGtrVerbPan = (event.clientX - mixpadR.offsetLeft)/300; 
+				LgtrVerbPanner.pan.value = newLGtrVerbPan; 
+				LgtrVerbGainSetting = 1-(event.clientY-mixpadR.offsetTop)/300;
+				if (LgtrVerbSoloed == true || (drumsSoloed == false & bassSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)) {
+					if (LgtrVerbMuted == false) {
+						LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+					} else if (LgtrVerbMuted == true) {
+						LgtrVerbGain.gain.value = 0;
+					}
+				} else if (LgtrVerbSoloed == false && (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true)) {
+					LgtrVerbGain.gain.value = 0;
+				}
+			} else if (LgtrVerbSeeking == false) {
+				mixpad.style.borderColor = "#000000";
+			}
+		}			
+
+	}
+
+	function setPanR(event) {
+		if (Drums.checked) {
+			if (drumsSeeking == true) {
+				drumsSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (drumsSeeking == false) {
+				drumsSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (Bass.checked) {
+			if (bassSeeking == true) {
+				bassSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (bassSeeking == false) {
+				bassSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (Guitar.checked) {
+			if (gtrSeeking == true) {
+				gtrSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (gtrSeeking == false) {
+				gtrSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (LGuitar.checked) {
+			if (LgtrSeeking == true) {
+				LgtrSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (LgtrSeeking == false) {
+				LgtrSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		}else if (DrumVerb.checked) {
+			if (drumVerbSeeking == true) {
+				drumVerbSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (drumVerbSeeking == false) {
+				drumVerbSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (BassVerb.checked) {
+			if (bassVerbSeeking == true) {
+				bassVerbSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (bassVerbSeeking == false) {
+				bassVerbSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (GuitarVerb.checked) {
+			if (gtrVerbSeeking == true) {
+				gtrVerbSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (gtrVerbSeeking == false) {
+				gtrVerbSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		} else if (LGuitarVerb.checked) {
+			if (LgtrVerbSeeking == true) {
+				LgtrVerbSeeking = false;
+				mixpad.style.borderColor = "#000000";
+			} else if (LgtrVerbSeeking == false) {
+				LgtrVerbSeeking = true;
+				mixpad.style.borderColor = "#C4F2FF";
+			}
+		}
+	}
+	
+	function MuteDrums() {
+		if (drumsMuted == true) {
+			muteDrums.style.background = "url(Pics/UnMute.png) no-repeat";
+			drumsMuted = false;
+			drumGain.gain.value = drumGainSetting;
+		} else if (drumsMuted == false) {
+			muteDrums.style.background = "url(Pics/Mute.png) no-repeat";
+			drumsMuted = true;
+			drumGain.gain.value = 0;
+			muteDrums.style.background = "url(Pics/Mute.png) no-repeat";
+			drumsMuted = true;
+		}
+	}
+	function MuteBass() {
+		if (bassMuted == true) {
+		muteBass.style.background = "url(Pics/UnMute.png) no-repeat";
+		bassMuted = false;
+		bassGain.gain.value = bassGainSetting;
+		} else if (bassMuted == false) {
+		muteBass.style.background = "url(Pics/Mute.png) no-repeat";
+		bassMuted = true;
+		bassGain.gain.value = 0;
+		}
+	}
+	function MuteGtr() {
+		if (gtrMuted == true) {
+		muteGtr.style.background = "url(Pics/UnMute.png) no-repeat";
+		gtrMuted = false;
+		gtrGain.gain.value = gtrGainSetting;
+		} else if (gtrMuted == false) {
+		muteGtr.style.background = "url(Pics/Mute.png) no-repeat";
+		gtrMuted = true;
+		gtrGain.gain.value = 0;
+		}
+	}
+	function MuteLGtr() {
+		if (LgtrMuted == true) {
+		muteLGtr.style.background = "url(Pics/UnMute.png) no-repeat";
+		LgtrMuted = false;
+		LgtrGain.gain.value = LgtrGainSetting;
+		} else if (LgtrMuted == false) {
+		muteLGtr.style.background = "url(Pics/Mute.png) no-repeat";
+		LgtrMuted = true;
+		LgtrGain.gain.value = 0;
+		}
+	}
+	function MuteDrumVerb() {
+		if (drumVerbMuted == true) {
+			muteDrumVerb.style.background = "url(Pics/UnMute.png) no-repeat";
+			drumVerbMuted = false;
+			drumVerbGain.gain.value = drumVerbGainSetting;
+		} else if (drumVerbMuted == false) {
+			muteDrumVerb.style.background = "url(Pics/Mute.png) no-repeat";
+			drumVerbMuted = true;
+			drumVerbGain.gain.value = 0;
+		}
+	}
+	function MuteBassVerb() {
+		if (bassVerbMuted == true) {
+		muteBassVerb.style.background = "url(Pics/UnMute.png) no-repeat";
+		bassVerbMuted = false;
+		bassVerbGain.gain.value = bassVerbGainSetting;
+		} else if (bassVerbMuted == false) {
+		muteBassVerb.style.background = "url(Pics/Mute.png) no-repeat";
+		bassVerbMuted = true;
+		bassVerbGain.gain.value = 0;
+		}
+	}
+	function MuteGtrVerb() {
+		if (gtrVerbMuted == true) {
+		muteGtrVerb.style.background = "url(Pics/UnMute.png) no-repeat";
+		gtrVerbMuted = false;
+		gtrVerbGain.gain.value = gtrVerbGainSetting;
+		} else if (gtrVerbMuted == false) {
+		muteGtrVerb.style.background = "url(Pics/Mute.png) no-repeat";
+		gtrVerbMuted = true;
+		gtrVerbGain.gain.value = 0;
+		}
+	}
+	function MuteLGtrVerb() {
+		if (LgtrVerbMuted == true) {
+		muteLGtrVerb.style.background = "url(Pics/UnMute.png) no-repeat";
+		LgtrVerbMuted = false;
+		LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+		} else if (LgtrVerbMuted == false) {
+		muteLGtrVerb.style.background = "url(Pics/Mute.png) no-repeat";
+		LgtrVerbMuted = true;
+		LgtrVerbGain.gain.value = 0;
+		}
+	}
+
+	function DrumSolo() {
+		if (drumsSoloed == false) {
+			drumsSoloed = true;
+			SoloDrums.style.background = "url(Pics/Solo.png) no-repeat";
+			if (drumsMuted == false) {
+				drumGain.gain.value = drumGainSetting;
+			}
+			if (bassSoloed == false) {
+				bassGain.gain.value = 0;
+			}
+			if (gtrSoloed == false) {
+				gtrGain.gain.value = 0;
+			}
+			if (LgtrSoloed == false) {
+				LgtrGain.gain.value = 0;
+			}
+			if (drumVerbSoloed == false) {
+				drumVerbGain.gain.value = 0;
+			}
+			if (bassVerbSoloed == false) {
+				bassVerbGain.gain.value = 0;
+			}
+			if (gtrVerbSoloed == false) {
+				gtrVerbGain.gain.value = 0;
+			}
+			if (LgtrVerbSoloed == false) {
+				LgtrVerbGain.gain.value = 0;
+			}
+		
+		} else if (drumsSoloed == true) {
+			drumsSoloed = false;
+			SoloDrums.style.background = "url(Pics/UnSolo.png) no-repeat";
+			if (bassSoloed == false && drumsSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)  {
+				if (drumVerbMuted == false) {
+					drumVerbGain.gain.value = drumVerbGainSetting;
+				}
+				if (bassMuted == false) {
+					bassGain.gain.value = bassGainSetting;
+				}
+				if (gtrMuted == false) {
+					gtrGain.gain.value = gtrGainSetting;
+				}
+				if (LgtrMuted == false) {
+					LgtrGain.gain.value = LgtrGainSetting;
+				}
+				if (bassVerbMuted == false) {
+					bassVerbGain.gain.value = bassVerbGainSetting;
+				}
+				if (gtrVerbMuted == false) {
+					gtrVerbGain.gain.value = gtrVerbGainSetting;
+				}
+				if (LgtrVerbMuted == false) {
+					LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+			}
+			if (bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)  {
+				drumGain.gain.value = 0;
+			}
+		}
+	}
+
+	function BassSolo() {
+		if (bassSoloed == false) {
+			bassSoloed = true;
+			SoloBass.style.background = "url(Pics/Solo.png) no-repeat";
+			if (bassMuted == false) {
+				bassGain.gain.value = bassGainSetting;
+			}
+			if (drumsSoloed == false) {
+				drumGain.gain.value = 0;
+			}
+			if (gtrSoloed == false) {
+				gtrGain.gain.value = 0;
+			}
+			if (LgtrSoloed == false) {
+				LgtrGain.gain.value = 0;
+			}
+			if (drumVerbSoloed == false) {
+				drumVerbGain.gain.value = 0;
+			}
+			if (bassVerbSoloed == false) {
+				bassVerbGain.gain.value = 0;
+			}
+			if (gtrVerbSoloed == false) {
+				gtrVerbGain.gain.value = 0;
+			}
+			if (LgtrVerbSoloed == false) {
+				LgtrVerbGain.gain.value = 0;
+			}
+		
+		} else if (bassSoloed == true) {
+			bassSoloed = false;
+			SoloBass.style.background = "url(Pics/UnSolo.png) no-repeat";
+			if (drumsSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)  {
+				if (drumsMuted == false) {
+					drumGain.gain.value = drumGainSetting;
+				}
+				if (drumVerbMuted == false) {
+					drumVerbGain.gain.value = drumVerbGainSetting;
+				}
+				if (gtrMuted == false) {
+					gtrGain.gain.value = gtrGainSetting;
+				}
+				if (LgtrMuted == false) {
+					LgtrGain.gain.value = LgtrGainSetting;
+				}
+				if (bassVerbMuted == false) {
+					bassVerbGain.gain.value = bassVerbGainSetting;
+				}
+				if (gtrVerbMuted == false) {
+					gtrVerbGain.gain.value = gtrVerbGainSetting;
+				}
+				if (LgtrVerbMuted == false) {
+					LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+			}
+			if (drumsSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)  {
+				bassGain.gain.value = 0;
+			}
+		}
+
+	}
+	function GtrSolo() {
+		if (gtrSoloed == false) {
+			gtrSoloed = true;
+			SoloGtr.style.background = "url(Pics/Solo.png) no-repeat";
+			if (gtrMuted == false) {
+				gtrGain.gain.value = gtrGainSetting;
+			}
+			if (drumsSoloed == false) {
+				drumGain.gain.value = 0;
+			}
+			if (bassSoloed == false) {
+				bassGain.gain.value = 0;
+			}
+			if (LgtrSoloed == false) {
+				LgtrGain.gain.value = 0;
+			}
+			if (drumVerbSoloed == false) {
+				drumVerbGain.gain.value = 0;
+			}
+			if (bassVerbSoloed == false) {
+				bassVerbGain.gain.value = 0;
+			}
+			if (gtrVerbSoloed == false) {
+				gtrVerbGain.gain.value = 0;
+			}
+			if (LgtrVerbSoloed == false) {
+				LgtrVerbGain.gain.value = 0;
+			}
+		
+		} else if (gtrSoloed == true) {
+			gtrSoloed = false;
+			SoloGtr.style.background = "url(Pics/UnSolo.png) no-repeat";
+			if (bassSoloed == false && drumsSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)  {
+				if (drumsMuted == false) {
+					drumGain.gain.value = drumGainSetting;
+				}
+				if (bassMuted == false) {
+					bassGain.gain.value = bassGainSetting;
+				}
+				if (LgtrMuted == false) {
+					LgtrGain.gain.value = LgtrGainSetting;
+				}
+				if (drumVerbMuted == false) {
+					drumVerbGain.gain.value = drumVerbGainSetting;
+				}
+				if (bassVerbMuted == false) {
+					bassVerbGain.gain.value = bassVerbGainSetting;
+				}
+				if (gtrVerbMuted == false) {
+						gtrVerbGain.gain.value = gtrVerbGainSetting;
+				}
+				if (LgtrVerbMuted == false) {
+						LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+			}
+			if (drumsSoloed == true || bassSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)  {
+				gtrGain.gain.value = 0;
+			}
+		}
+
+	}
+
+	function LGtrSolo() {
+		if (LgtrSoloed == false) {
+			LgtrSoloed = true;
+			SoloLGtr.style.background = "url(Pics/Solo.png) no-repeat";
+			if (LgtrMuted == false) {
+				LgtrGain.gain.value = LgtrGainSetting;
+			}
+			if (drumsSoloed == false) {
+				drumGain.gain.value = 0;
+			}
+			if (bassSoloed == false) {
+				bassGain.gain.value = 0;
+			}
+			if (gtrSoloed == false) {
+				gtrGain.gain.value = 0;
+			}
+			if (drumVerbSoloed == false) {
+				drumVerbGain.gain.value = 0;
+			}
+			if (bassVerbSoloed == false) {
+				bassVerbGain.gain.value = 0;
+			}
+			if (gtrVerbSoloed == false) {
+				gtrVerbGain.gain.value = 0;
+			}
+			if (LgtrVerbSoloed == false) {
+				LgtrVerbGain.gain.value = 0;
+			}
+		
+		} else if (LgtrSoloed == true) {
+			LgtrSoloed = false;
+			SoloLGtr.style.background = "url(Pics/UnSolo.png) no-repeat";
+			if (bassSoloed == false && drumsSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)  {
+				if (drumsMuted == false) {
+					drumGain.gain.value = drumGainSetting;
+				}
+				if (bassMuted == false) {
+					bassGain.gain.value = bassGainSetting;
+				}
+				if (gtrMuted == false) {
+					gtrGain.gain.value = gtrGainSetting;
+				}
+				if (drumVerbMuted == false) {
+					drumVerbGain.gain.value = drumVerbGainSetting;
+				}
+				if (bassVerbMuted == false) {
+					bassVerbGain.gain.value = bassVerbGainSetting;
+				}
+				if (gtrVerbMuted == false) {
+						gtrVerbGain.gain.value = gtrVerbGainSetting;
+				}
+				if (LgtrVerbMuted == false) {
+						LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+			}
+			if (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)  {
+				LgtrGain.gain.value = 0;
+			}
+		}
+
+	}
+	function DrumVerbSolo() {
+		if (drumVerbSoloed == false) {
+			drumVerbSoloed = true;
+			SoloDrumVerb.style.background = "url(Pics/Solo.png) no-repeat";
+			if (drumVerbMuted == false) {
+				drumVerbGain.gain.value = drumVerbGainSetting;
+			}
+			if (drumsSoloed == false) {
+				drumGain.gain.value = 0;
+			}
+			if (bassSoloed == false) {
+				bassGain.gain.value = 0;
+			}
+			if (gtrSoloed == false) {
+				gtrGain.gain.value = 0;
+			}
+			if (LgtrSoloed == false) {
+				LgtrGain.gain.value = 0;
+			}
+			if (bassVerbSoloed == false) {
+				bassVerbGain.gain.value = 0;
+			}
+			if (gtrVerbSoloed == false) {
+				gtrVerbGain.gain.value = 0;
+			}
+			if (LgtrVerbSoloed == false) {
+				LgtrVerbGain.gain.value = 0;
+			}
+		
+		} else if (drumVerbSoloed == true) {
+			drumVerbSoloed = false;
+			SoloDrumVerb.style.background = "url(Pics/UnSolo.png) no-repeat";
+			if (bassSoloed == false && drumsSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)  {
+				if (drumsMuted == false) {
+					drumGain.gain.value = drumGainSetting;
+				}
+				if (bassMuted == false) {
+					bassGain.gain.value = bassGainSetting;
+				}
+				if (gtrMuted == false) {
+					gtrGain.gain.value = gtrGainSetting;
+				}
+				if (LgtrMuted == false) {
+					LgtrGain.gain.value = LgtrGainSetting;
+				}
+				if (bassVerbMuted == false) {
+					bassVerbGain.gain.value = bassVerbGainSetting;
+				}
+				if (gtrVerbMuted == false) {
+					gtrVerbGain.gain.value = gtrVerbGainSetting;
+				}
+				if (LgtrVerbMuted == false) {
+					LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+			}
+			if (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || bassVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)  {
+				drumVerbGain.gain.value = 0;
+			}
+		}
+
+	}
+
+	function BassVerbSolo() {
+		if (bassVerbSoloed == false) {
+			bassVerbSoloed = true;
+			SoloBassVerb.style.background = "url(Pics/Solo.png) no-repeat";
+			if (bassVerbMuted == false) {
+				bassVerbGain.gain.value = bassVerbGainSetting;
+			}
+			if (drumsSoloed == false) {
+				drumGain.gain.value = 0;
+			}
+			if (bassSoloed == false) {
+				bassGain.gain.value = 0;
+			}
+			if (gtrSoloed == false) {
+				gtrGain.gain.value = 0;
+			}
+			if (LgtrSoloed == false) {
+				LgtrGain.gain.value = 0;
+			}
+			if (drumVerbSoloed == false) {
+				drumVerbGain.gain.value = 0;
+			}
+			if (gtrVerbSoloed == false) {
+				gtrVerbGain.gain.value = 0;
+			}
+			if (LgtrVerbSoloed == false) {
+				LgtrVerbGain.gain.value = 0;
+			}
+		
+		} else if (bassVerbSoloed == true) {
+			bassVerbSoloed = false;
+			SoloBassVerb.style.background = "url(Pics/UnSolo.png) no-repeat";
+			if (bassSoloed == false && drumsSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)  {
+				if (drumsMuted == false) {
+					drumGain.gain.value = drumGainSetting;
+				}
+				if (bassMuted == false) {
+					bassGain.gain.value = bassGainSetting;
+				}
+				if (gtrMuted == false) {
+					gtrGain.gain.value = gtrGainSetting;
+				}
+				if (LgtrMuted == false) {
+					LgtrGain.gain.value = LgtrGainSetting;
+				}
+				if (drumVerbMuted == false) {
+					drumVerbGain.gain.value = drumVerbGainSetting;
+				}
+				if (gtrVerbMuted == false) {
+					gtrVerbGain.gain.value = gtrVerbGainSetting;
+				}
+				if (LgtrVerbMuted == false) {
+					LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+			}
+			if (drumsSoloed == true || bassSoloed == true || gtrSoloed == true || LgtrSoloed == true || drumVerbSoloed == true || gtrVerbSoloed == true || LgtrVerbSoloed == true)  {
+				bassVerbGain.gain.value = 0;
+			}
+		}
+
+	}
+
+	function GtrVerbSolo() {
+		if (gtrVerbSoloed == false) {
+			gtrVerbSoloed = true;
+			SoloGtrVerb.style.background = "url(Pics/Solo.png) no-repeat";
+			if (gtrVerbMuted == false) {
+				gtrVerbGain.gain.value = gtrVerbGainSetting;
+			}
+			if (drumsSoloed == false) {
+				drumGain.gain.value = 0;
+			}
+			if (bassSoloed == false) {
+				bassGain.gain.value = 0;
+			}
+			if (gtrSoloed == false) {
+				gtrGain.gain.value = 0;
+			}
+			if (LgtrSoloed == false) {
+				LgtrGain.gain.value = 0;
+			}
+			if (drumVerbSoloed == false) {
+				drumVerbGain.gain.value = 0;
+			}
+			if (bassVerbSoloed == false) {
+				bassVerbGain.gain.value = 0;
+			}
+			if (LgtrVerbSoloed == false) {
+				LgtrVerbGain.gain.value = 0;
+			}
+		
+		} else if (gtrVerbSoloed == true) {
+			gtrVerbSoloed = false;
+			SoloGtrVerb.style.background = "url(Pics/UnSolo.png) no-repeat";
+			if (bassSoloed == false && drumsSoloed == false && gtrSoloed == false && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)  {
+				if (drumsMuted == false) {
+					drumGain.gain.value = drumGainSetting;
+				}
+				if (bassMuted == false) {
+					bassGain.gain.value = bassGainSetting;
+				}
+				if (gtrMuted == false) {
+					gtrGain.gain.value = gtrGainSetting;
+				}
+				if (LgtrMuted == false) {
+					LgtrGain.gain.value = LgtrGainSetting;
+				}
+				if (drumVerbMuted == false) {
+					drumVerbGain.gain.value = drumVerbGainSetting;
+				}
+				if (bassVerbMuted == false) {
+					bassVerbGain.gain.value = bassVerbGainSetting;
+				}
+				if (LgtrVerbMuted == false) {
+					LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+			}
+			if (drumsSoloed == true || bassSoloed == true  || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrSoloed == true || LgtrVerbSoloed == true)  {
+				gtrVerbGain.gain.value = 0;
+			}
+		}
+
+	}
+
+	function LGtrVerbSolo() {
+		if (LgtrVerbSoloed == false) {
+			LgtrVerbSoloed = true;
+			SoloLGtrVerb.style.background = "url(Pics/Solo.png) no-repeat";
+			if (LgtrVerbMuted == false) {
+				LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+			}
+			if (drumsSoloed == false) {
+				drumGain.gain.value = 0;
+			}
+			if (bassSoloed == false) {
+				bassGain.gain.value = 0;
+			}
+			if (gtrSoloed == false) {
+				gtrGain.gain.value = 0;
+			}
+			if (gtrVerbSoloed == false) {
+				gtrVerbGain.gain.value = 0;
+			}
+			if (drumVerbSoloed == false) {
+				drumVerbGain.gain.value = 0;
+			}
+			if (bassVerbSoloed == false) {
+				bassVerbGain.gain.value = 0;
+			}
+			if (LgtrVerbSoloed == false) {
+				LgtrVerbGain.gain.value = 0;
+			}
+		
+		} else if (LgtrVerbSoloed == true) {
+			LgtrVerbSoloed = false;
+			SoloLGtrVerb.style.background = "url(Pics/UnSolo.png) no-repeat";
+			if (bassSoloed == false && drumsSoloed == false && gtrSoloed == false  && LgtrSoloed == false && drumVerbSoloed == false && bassVerbSoloed == false && gtrVerbSoloed == false && LgtrVerbSoloed == false)  {
+				if (drumsMuted == false) {
+					drumGain.gain.value = drumGainSetting;
+				}
+				if (bassMuted == false) {
+					bassGain.gain.value = bassGainSetting;
+				}
+				if (gtrMuted == false) {
+					gtrGain.gain.value = gtrGainSetting;
+				}
+				if (LgtrMuted == false) {
+					LgtrGain.gain.value = LgtrGainSetting;
+				}
+				if (drumVerbMuted == false) {
+					drumVerbGain.gain.value = drumVerbGainSetting;
+				}
+				if (bassVerbMuted == false) {
+					bassVerbGain.gain.value = bassVerbGainSetting;
+				}
+				if (gtrVerbMuted == false) {
+					LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+				if (LgtrVerbMuted == false) {
+					LgtrVerbGain.gain.value = LgtrVerbGainSetting;
+				}
+			}
+			if (drumsSoloed == true || bassSoloed == true  || LgtrSoloed == true || drumVerbSoloed == true || bassVerbSoloed == true || gtrSoloed == true || gtrVerbSoloed == true)  {
+				LgtrVerbGain.gain.value = 0;
+			}
+		}
+
+	}
+
+
+	function LoopAudio() {
+		if (going == true) {
+			if (looping == false) {
+				looping = true;
+				loop.style.background = "url(Pics/Loop.png) no-repeat";
+				drumSource.loop = true;
+				bassSource.loop = true;
+				gtrSource.loop = true;
+				LgtrSource.loop = true;
+			} else if (looping == true) {
+				looping = false;
+				loop.style.background = "url(Pics/NoLoop.png) no-repeat";
+				drumSource.loop = false;
+				bassSource.loop = false;
+				gtrSource.loop = false;
+				LgtrSource.loop = false;
+			}
+		} else if (going == false) {
+			if (looping == false) {
+				looping = true; 
+				loop.style.background = "url(Pics/Loop.png) no-repeat";
+			} else if (looping == true) {
+				looping = false;
+				loop.style.background = "url(Pics/NoLoop.png) no-repeat";
+			}
+		}
+	}
+
+
+	function SetMasterVolume() {
+		masterGain.gain.value = MasterVolume.value/100;
+	}
+
+	function SetVerbVolume() {
+		verbGain.gain.value = VerbVolume.value/100;
+	}
+
+	function Seek(event) {
+		if (trackSeeking == true) {
+			TrackScroller.value = event.clientX - TrackScroller.offsetLeft;
+			seekto = drumBuffer.duration * (TrackScroller.value/300);
+			if (going == false) {
+				going = true;
+				playSound();
+				startOffset = seekto+(loopnum*drumBuffer.duration);
+				if (looping == true) {
+					drumSource.loop = true;
+					bassSource.loop = true;
+					gtrSource.loop = true;
+					LgtrSource.loop = true;
+				} else if (looping == false) {
+					drumSource.loop = false;
+					bassSource.loop = false;
+					gtrSource.loop = false;
+					LgtrSource.loop = false;
+				}
+			} else if (going == true) {
+				playSound();
+				startOffset = seekto+(loopnum*drumBuffer.duration);
+				playSound();
+				if (looping == true) {
+					drumSource.loop = true;
+					bassSource.loop = true;
+					gtrSource.loop = true;
+					LgtrSource.loop = true;
+				} else if (looping == false) {
+					drumSource.loop = false;
+					bassSource.loop = false;
+					gtrSource.loop = false;
+					LgtrSource.loop = false;
+				}
+			}
+		}
+	}
+	
+	function SeekTimeUpdate() {
+		var curmins = Math.floor((TrackScroller.value/300)*(drumBuffer.duration)/60);
+		var cursecs = Math.floor((TrackScroller.value/300)*(drumBuffer.duration)-curmins*60);
+		var durmins = Math.floor(drumBuffer.duration/60);
+		var dursecs = Math.floor(drumBuffer.duration-(durmins*60));
+		if (cursecs < 10) { cursecs = "0"+cursecs;}
+		if (dursecs < 10) { dursecs = "0"+dursecs;}
+		if (curmins < 10) { curmins = "0"+curmins;}
+		if (durmins < 10) { durmins = "0"+durmins;}	
+		curTime.innerHTML = curmins+":"+cursecs;
+		durTime.innerHTML = durmins+":"+dursecs;	
+		if (going == true) {
+			if (looping == true) {
+				if (TrackScroller.value == 300) {
+					loopnum = loopnum+1;
+				}
+			}
+			nt = (startOffset+context.currentTime-startTime)*(300/drumBuffer.duration)-(loopnum*300);
+			TrackScroller.value = nt;
+		} else if (going == false) {
+			nt = (startOffset-(loopnum*drumBuffer.duration))*(300/drumBuffer.duration);
+			TrackScroller.value = nt;
+		}
+	}
+
+
+
+</script>
+
+
+</body>
+</html>
